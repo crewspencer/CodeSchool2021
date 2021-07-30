@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head> 
+    <div id="app">
+        <h1>Math Test</h1>
+        <br>
+        <nav>
+            <p v-on:click="page = 'test'">Test</p>
+            <p v-on:click="page = 'results'">Results</p>
+        </nav>
+        <div v-if="page == 'test'">
+            <h2>Problem Section:</h2>
+            <p> Problem {{ problem_num }} </p>
+            <p>{{ num_one }} + {{ num_two }} = {{ the_answer }}</p>
+            <br>
+            <p> Guess:
+                <input type="text" v-model="answer">
+            </p>
+            <br>
+            <button v-if="!submitted" v-on:click="checkAnswer( )">Check Answer</button>
+            <br>
+            <br>
+            <button v-on:click="generateRandomNumbers( )">Next Question</button>
+            <br>
+            <p> {{ feedback }} </p>
+            <br>
+        </div>
+        <div v-if="page == 'results'">
+            <h2>Results Section:</h2>
+            <p> You've Gotten {{ results }} / {{ answered }} Correct</p>
+        </div>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>

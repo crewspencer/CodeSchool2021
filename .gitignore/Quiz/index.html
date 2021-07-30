@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <!--<link rel="stylesheet" href="style.css">  -->
+</head>
+<div id="app">
+    <h1> {{quiz.title}} </h1>
+
+    <div v-for="(question,index) in quiz.questions">
+        <div v-show = "index === questionIndex">
+        <h2> {{question.text}} </h2>
+        <ul>
+            <li v-for="response in question.responses">
+            <label>
+                <input type="radio"
+                        v-bind:value="response.correct"
+                        v-bind:name = "index"
+                        v-model ="userResponses[index]">{{ response.text }}
+            </label>
+            </li>
+        </ul>
+        <button v-if="questionIndex >0" v-on:click="prev()">Previous</button>
+        <button v-on:click="next">Next</button>
+        </div>
+   </div>
+   <div v-show="questionIndex === quiz.questions.length">
+    <h2>
+        Quiz Finished
+    </h2>
+    <p>
+        Total Score: {{ score () }} / {{ quiz.questions.length }}
+    </p>
+   </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="app.js"></script>
+</html>

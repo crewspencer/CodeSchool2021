@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <div id="app"> 
+        <h1>{{ greeting }}</h1>
+        <p v-on:click="changeName( )">Name: {{ name }}</p>
+        <p>Occupation: {{ job }}</p>
+
+
+
+
+        <p>Enter a new name</p><input type="text" v-model="what_im_typing" v-on:keydown.enter="changeName(what_im_typing)">
+        <button v-on:click="changeName(what_im_typing)">Change Name</button>
+        <p>{{ what_im_typing }}</p>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>

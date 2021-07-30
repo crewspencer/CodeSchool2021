@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <div id="app">
+        <h1> Checkout Skateboard</h1>
+        Pick a deck:
+        <br>
+        <img class="image" v-bind:src="computedDeckImage"><br>
+            <input value= "oak" type="radio" v-model="deck_type"> Oak
+            <input value= "pine" type="radio" v-model="deck_type"> Pine
+            <input value= "wood" type="radio" v-model="deck_type"> Wood
+        <br>
+        Cost: ${{ cost_of_deck }}
+        <br><br>
+        Pick a Board Image:
+        <br>
+        <img class="boardimage" v-bind:src="computedBoardImage"><br>
+            <input value= "supreme" type="radio" v-model="board_type"> Supreme
+            <input value= "baker" type="radio" v-model="board_type"> Baker
+            <input value= "element" type="radio" v-model="board_type"> Element
+        <br>
+        Cost: ${{ cost_of_board }}
+        <br><br>
+        Pick a Griptape:
+        <br>
+        <img class="image" v-bind:src="computedGripImage"><br>
+            <input value= "blackg" type="radio" v-model="griptape_type"> Black
+            <input value= "whiteg" type="radio" v-model="griptape_type"> White
+            <input value= "redg" type="radio" v-model="griptape_type"> Red
+        <br>
+        Cost: ${{ cost_of_grip }}
+        <br><br>
+
+        Pick your wheel:
+        <br>
+        <img class="image" v-bind:src="computedWheelImage"><br>
+            <input value= "blue" type="radio" v-model="wheel_type"> Blue
+            <input value= "red" type="radio" v-model="wheel_type"> Red
+            <input value= "black" type="radio" v-model="wheel_type"> Black
+        <br>
+        Cost: ${{ cost_of_wheel }}
+        <div id="totalcost">
+            <br><br>
+            Cost: $ {{ cost }}
+            <br>
+            Tax: $ {{ tax }}
+            <br>
+            Total Cost:  {{ computedCost }}
+            <br>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>

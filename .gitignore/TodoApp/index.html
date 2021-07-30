@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<div id="app">
+<div id="apptitle">
+    <h1> Todo App</h1>
+</div>
+    <div class="input-area">
+        <div id="createStyle">
+        <h2>Create Todo</h2>
+        <label>Name</label>
+        <input type="text" v-model="new_todo_name" place holder="Enter a new todo name">
+        <label> Description </label>
+        <input type="text" v-model="new_todo_description" placeholder="Description">
+        <label>Deadline </label>
+        <input type="date" v-model="new_todo_deadline" placeholder="Deadline Date">
+        <div id="addb">
+        <button  v-on:click="addNewTodo( )">Add</button>
+    </div>  
+    </div>
+    </div>
+    <h2> Your Todo List</h2>
+    <ul>
+        <li v-for="(todo,index) in todos">
+            <input type="checkbox" v-model="todo.done">
+
+            <div v-if="todo.editing">
+                <input type="text" v-model="todo.name">
+                <input type="text" v-model="todo.description">
+                <input type="date" v-model="todo.deadline">
+                <button v-on:click="saveTodo(todo)">Save</button>
+            </div>
+
+
+            <div v-else>
+                    <div> {{ todo.name }} </div>
+                    <div> {{ todo.description }} </div><br>
+                    <div> {{ todo.deadline }} </div>
+                    <button v-on:click="editTodo(todo)">Edit</button>
+            </div>
+            <div id="deleteb">
+            <button v-on:click="deleteTodo(index)">Delete</button>
+        </div>
+        </li>
+    </ul>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="app.js"></script>
+</html>

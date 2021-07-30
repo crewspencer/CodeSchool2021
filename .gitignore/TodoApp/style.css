@@ -1,0 +1,29 @@
+#apptitle{
+    display: flex;
+    justify-content: center;
+}
+#createStyle{
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+    margin-bottom:60px;
+    flex-direction: row;
+}
+
+label{
+    margin-right:10px;
+    margin-left: 10px;
+}
+
+#addb {
+    margin-left: 10px;
+}
+
+#deleteb {
+    margin-top: 10px;
+}
+
+h2{
+    margin-right: 25px;
+    margin-top: 10px;
+}

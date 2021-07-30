@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Language Quiz</h1>
+    <div style="background-color:#F25F5C">
+        <h2>HTML is a <span id='a3'> ______ </span> Language.</h2><br>
+            <form id="d3">
+            <input type="radio" name="choice" value="Wonderful"> Wonderful
+            <input type="radio" name="choice" value="Application"> Application
+            <input type="radio" name="choice" value="Markup">Markup
+            <input type="radio" name="choice" value="None of These"> None of These
+        <br>
+            <input type="submit" value="submit" onclick="validate(choice.value, 'Markup', 'd3', 'a3')">
+            </form>
+            </div>
+    <div style="background-color:#F25F5C">
+        <h2>JavaScript is a <span id='a1'>______</span> Language.</h2><br>
+            <form id="d1">
+            <input type="radio" name="choice" value="Scripting"> Scripting
+            <input type="radio" name="choice" value="Programming"> Programming
+            <input type="radio" name="choice" value="Application"> Application
+            <input type="radio" name="choice" value="None of These"> None of These
+        <br>
+            <input type="submit" value="submit" onclick="validate(choice.value, 'Scripting', 'd1','a1')">
+            </form>
+    </div>
+    <div style="background-color:#F25F5C">
+        <h2>Python is a <span id='a2'> ______ </span> Language.</h2><br>
+            <form id="d2">
+            <input type="radio" name="choice" value="Scripting"> Scripting
+            <input type="radio" name="choice" value="Wonderful"> Wonderful
+            <input type="radio" name="choice" value="Application"> Application
+            <input type="radio" name="choice" value="None of These"> None of These
+        <br>
+            <input type="submit" value="submit" onclick="validate(choice.value, 'Wonderful', 'd2', 'a2')">
+
+            </form>
+    </div>
+
+
+        
+        <script src="app.js"></script>
+    </body>
+</html>
