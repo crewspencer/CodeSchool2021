@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <form id="app">
+
+        <div class="bar">
+            <input type="text" v-model="searchString" placeholder=" Enter your search terms">
+
+        </div>
+
+
+
+        <ul>
+            <li v-for="article in filteredArticles">
+                <a v-bind:href="article.url">
+                    <img v-bind:src="article.image">
+                </a>
+                <p> {{article.title}} </p>
+            </li>
+        </ul>
+
+    </form>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="app.js"></script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <div id="app">
+        <nav v-bind:class="active">
+            <a href="#" v-on:click="makeActive('home')">Home</a>
+            <a href="#" v-on:click="makeActive('projects')">Projects</a>
+            <a href="#" v-on:click="makeActive('services')">Services</a>
+            <a href="#" v-on:click="makeActive('contact')">Contact</a>
+        </nav>
+
+        <div v-if="page =='home'">
+            <p>This is the home page</p>
+            <span>Multiple message is: </span>
+            <p> {{ message }}</p>
+            <br>
+            <textarea v-model="message" placeholder="add multiple lines"></textarea>
+        </div>
+        <div v-else-if="page == 'projects'">
+            <p>My projects</p>
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="John" value="John" v-model="checkedNames">
+            <label for="john">John</label>
+            <input type="checkbox" id="Sally" value="Sally" v-model="checkedNames">
+            <label for="sally">Sally</label>
+            <br>
+            <span>
+                Checked names: {{ checkedNames }}
+            </span>
+        </div>
+
+        <div v-else-if="page == 'services'">
+            <input type="radio" id="one" value="One" v-model="picked">
+            <label for="one">One</label><br>
+            <input type="radio" id="two" value="Two" v-model="picked">
+            <label for="two" >Two</label><br>
+            <span>Picked:{{ picked }}</span>
+        </div>
+
+
+        <div v-else-if="page == 'contact'">
+            <!-- <select v-model="selected">
+                <option disabled value="">Please select one</option>
+                <option>Dogs</option>
+                <option>Cats</option>
+                <option>Birds</option>
+                <option>Lizards</option>
+            </select>
+            <span> Selected:{{ selected }}</span> -->
+
+            <select v-model="selected">
+                <option v-for="option in options" v-bind:value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+            <span> Selected:{{ selected }}</span>
+
+
+
+
+        </div>
+
+
+
+
+        <p> You chose <b>{{ page }}</b></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>
+
+
+

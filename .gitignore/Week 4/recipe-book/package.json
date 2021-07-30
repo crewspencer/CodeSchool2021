@@ -1,0 +1,26 @@
+{
+  "name": "recipe-book",
+  "version": "1.0.0",
+  "description": "What the user will see:",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgerontis/recipe-book.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgerontis/recipe-book/issues"
+  },
+  "homepage": "https://github.com/jgerontis/recipe-book#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14",
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <div id="app">
+
+        <h1> Forum App </h1>
+        <button v-on:click="page = 'forum'">Forum</button>
+        <button v-on:click="page = 'thread'">New Thread</button><br>
+
+    <div v-if="page == 'forum'">
+
+        <h3>Select A Category</h3>
+        <select v-model="selected_category">
+            <option v-for="category in categories">
+                {{ category }}
+            </option>
+        </select>
+        {{ selected_category }}
+
+
+        <!-- Displaying Threads -->
+
+        <div v-show="sorted_threads.length==0">
+            {{ threads_empty }}
+        </div>
+        <ul>
+            <li v-for="(thread, index) in sorted_threads">
+            <div v-on:click="showThread(index)">
+                <h2> {{ thread.name }} </h2>
+                <p> {{ thread.author }} </p>
+                <p> {{ thread.description }} </p>
+                <p> {{ thread.category }} </p>
+            </div>
+                <button v-on:click="deleteThread(index)">Delete</button>
+
+            </li>
+        </ul>
+    </div>
+<!-- END of Forum Page -->
+
+
+<!---Post Page- -->
+<div v-else-if="page == 'posts'">
+    <h2>{{threads[index].name}}</h2>
+    <p>{{threads[index].author}}</p>
+    <p>{{threads[index].description}}</p>
+    <p>{{threads[index].category}}</p>
+
+
+    <h2>Posts</h2>
+    <ul>
+        <li v-for="(post, index) in postings">
+           <p> {{ post.author }}</p>
+            <p>{{ post.body }} </p>
+            <button v-on:click="deletePost(index)">Delete</button>
+        </li>
+    </ul>
+
+
+
+    <div>
+        <h2>Create Post</h2>
+        <labe>Author: </labe>
+        <input type="text" v-model="new_post_author"><br>
+        <label>Description:</label>
+        <input type="text" v-model="new_post_body"><br>
+        <button v-on:click="createPost()">Post</button>
+
+    </div>
+
+</div>
+
+
+
+
+    <div v-else-if="page == 'thread'">
+        <h2>Create Thread</h2>
+        <label>Enter Title:</label>
+        <input v-model="new_name" type="text">
+        <label>Author:</label>
+        <input v-model="new_author" type="text">
+        <label>Description:</label>
+        <input v-model="new_description" type="text">
+        <label>Category:</label>
+        <select v-model="new_category">
+            <option v-for="category in categories" v-bind:value="category">
+                {{ category }}
+            </option>
+
+        </select>
+        <button v-on:click="createThread()">Submit</button>
+    </div>
+
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>

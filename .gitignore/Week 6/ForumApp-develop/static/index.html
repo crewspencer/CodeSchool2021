@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <v-app>
+            <v-main>
+                <v-app-bar color="light-blue lighten-3" fixed app>
+                    <v-app-bar-nav-icon @click="drawer =!drawer"></v-app-bar-nav-icon>
+                    <v-toolbar-title>Forum App</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-toolbar-items>
+                        <v-btn text v-on:click="page ='blog'">Blog</v-btn>
+                        <v-btn text v-on:click="page ='create'">New Thread</v-btn>
+                    </v-toolbar-items>
+                </v-app-bar>
+                <!-- 
+                    <v-navigation-drawer app v-model="drawer">
+                    <v-list>
+                        <v-list-item v-for="thread in threads">
+                            <v-list-item-title>
+                                <v-list-item-title>
+                                    {{ thread.title }}
+                                </v-list-item-title>
+                            </v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
+                -->
+                <v-container grid-list-lg fluid v-if="page == 'blog'">
+                    <v-select :items="categories" label="Category" v-model="selected_category">
+                    </v-select>
+
+                    <v-layout>
+                        <v-flex xs3></v-flex>
+                        <v-flex xs6 text-xs-center>
+                            <div class="display-2">Threads</div>
+                            <v-layout column>
+                                <v-flex v-for="thread in sorted_threads" v-bind:key="thread._id">
+                                    <v-card>
+                                        <v-card-title v-on:click="getComments(thread._id)">
+                                            <div class="headline">{{ thread.title }}</div>
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            <div class="caption">By: {{ thread.author }}</div>
+                                        </v-card-subtitle>
+                                        <v-card-text>
+                                            <span class="caption">{{ thread.description }}</span><br>
+                                            <span class="body-2" text-xs-center>{{ thread.category }}</span>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-flex>
+                        <v-flex xs3></v-flex>
+                    </v-layout>
+                </v-container>
+
+
+                <v-container grid-list-lg fluid v-if="page == 'thread'">
+                    <v-layout>
+                        <v-flex xs6 text-xs-center>
+                            <v-layout column>
+                                <v-flex>
+                                    <v-card>
+                                        <v-card-title>
+                                            <div class="headline">{{ active_thread.title }}</div>
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            <div class="caption">By: {{ active_thread.author }}</div>
+                                        </v-card-subtitle>
+                                        <v-card-text>
+                                            <span class="caption">{{ active_thread.description }}</span><br>
+                                            <span class="body-2" text-xs-center>{{ active_thread.category }}</span>
+                                        </v-card-text>
+                                        <v-card-actions>
+                                            <v-btn v-on:click="deleteThread(active_thread._id)" rounded color="primary"
+                                                dark>
+                                                Delete
+                                            </v-btn>
+                                            <v-btn v-on:click="upvoteThread(active_thread)" rounded color="primary"
+                                                dark>
+                                                <v-icon>mdi-thumb-up</v-icon>
+                                            </v-btn>
+                                            <span class="subheading mr-2">{{ active_thread.votes }}</span>
+                                            <v-btn v-on:click="downvoteThread(thread)" rounded color="primary" dark>
+                                                <v-icon>mdi-thumb-down</v-icon>
+                                            </v-btn>
+                                            <v-btn rounded color="primary" dark>
+                                                <v-icon>mdi-reply</v-icon>
+                                            </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+
+                                    <v-card v-for="comment in active_thread.comments">
+                                        <v-card-title>
+                                            <div class="caption">{{ comment.author }}</div>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            <span class="caption">{{ comment.body }}</span>
+                                        </v-card-text>
+
+                                        <v-card-actions>
+                                            <v-btn v-on:click="deleteComment(comment)" rounded color="primary" dark>
+                                                Delete
+                                            </v-btn>
+                                            <v-btn v-on:click="upvoteComment(comment)" rounded color="primary" dark>
+                                                <v-icon>mdi-thumb-up</v-icon>
+                                            </v-btn>
+                                            <span class="subheading mr-2">{{ comment.votes }}</span>
+                                            <v-btn v-on:click="downvoteComment(comment)" rounded color="primary" dark>
+                                                <v-icon>mdi-thumb-down</v-icon>
+                                            </v-btn>
+                                            <v-btn v-on:click="createReply(comment)" rounded color="primary" dark>
+                                                <v-icon>mdi-reply</v-icon>
+                                            </v-btn>
+                                        </v-card-actions>
+
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-flex>
+                    </v-layout>
+                    <v-flex xs6 text-xs-center>
+                        <div class="display-2">New Comment</div>
+
+                        <v-text-field label="Author" v-model="new_comment_author">
+                        </v-text-field>
+
+                        <v-text-field label="Body" v-model="new_comment_body">
+                        </v-text-field>
+
+                        <v-btn v-on:click="createComment()">Submit</v-btn>
+                    </v-flex>
+                </v-container>
+
+                <v-container v-if="page == 'create'">
+                    <v-layout>
+                        <v-flex xs6 text-xs-center>
+                            <div class="display-2">Create Thread</div>
+                            <v-text-field label="title" v-model="new_title">
+                            </v-text-field>
+
+                            <v-text-field label="Author" v-model="new_author">
+                            </v-text-field>
+
+                            <v-select :items="categories" label="Category" v-model="new_category">
+                            </v-select>
+                            <v-text-field label="text" v-model="new_description">
+                            </v-text-field>
+
+                            <v-btn v-on:click="createThread()">Submit</v-btn>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+
+
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Super Amazing App</title>
+</head>
+<body>
+    <div id="app">
+        <div class="front_camera">
+            <div class="dot"></div>
+            
+            <div class="camera_and_speaker">
+                <div class="main_camera"></div>
+                <div class="speaker"></div>
+            </div>
+        </div>
+
+        <div class="phone_screen">
+            <div class="messages">
+                <div class="single_message" v-for="message in texts">
+                    <div class="sender_name">
+                        {{ message.author }}
+                    </div>
+                    <div class="message_body">
+                        {{ message.text}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="create_message_section">
+                <div class="inputs_section">
+                    <div class="name_input">
+                        <input type="text" placeholder="Enter your name" 
+                            v-model="author" @keyup.enter="postText">
+                    </div>
+                    <div class="message_input">
+                        <input type="text" placeholder="Enter text message" 
+                            v-model="newText" @keyup.enter="postText">
+                    </div>
+                </div>
+                
+                <div class="send_button" 
+                    @click="postText">Send</div>
+            </div>
+        </div>
+
+        <div class="home_button"></div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

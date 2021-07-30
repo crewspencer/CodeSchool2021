@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<link rel="shortcut icon" type="image/jpeg" href="/static/computer-icons-royalty-free-clip-art-png-favpng-tJrUW2TtD8vR3HeBAgCDdLpPz.jpeg"/>
+    </head>
+    <body>
+    <div id="app" v-cloak>
+        <h1 style="font-size:50px">Recipe Book</h1>
+        <div class="input_area">
+            <h2 style="	font-size:35px">Add New Recipes<h2>
+            <label>Name</label>
+            <input type="text" v-model="new_recipe_name" placeholder="Enter name of recipe"><br>
+            <label>Ingredients</label>
+            <input type="text" v-model="new_recipe_ingredients" placeholder="Enter ingredients for recipe"><br>
+            <label>Instructions</label>
+            <input type="text" v-model="new_recipe_instructions" placeholder="Enter instructions for recipe"><br>
+            <button v-on:click="addNewRecipe( )">Add</button>
+        </div>
+        <h2 style="font-size:35px;margin-bottom:0">Favorite Recipes</h2>
+        <ul id="recipes">
+            <li class="recipe" v-for="(recipe,index) in recipes">
+                <input class="checkbox" type="checkbox" v-model ="recipe.done" v-on:change="saveRecipeDone(recipe)">
+
+                <div v-if="recipe.editing">
+                    <input type= "text" v-model= "recipe.name">
+                    <input type= "text" v-model= "recipe.ingredients">
+                    <input type= "text" v-model= "recipe.instructions">
+                    <button v-on:click="saveRecipe(recipe)">Save</button>
+                </div>
+
+                <div v-else v-bind:class="{ done: recipe.done }">
+                    <p> {{ recipe.name }} </p><br>
+                    <ul>
+                        <li v-for="ingredient in recipe.ingredients">{{ ingredient }}</li>
+                    </ul>
+                    <p> {{ recipe.instructions }} </p><br>
+                    <button v-on:click="editRecipe(recipe)">Edit</button>
+                </div>
+            
+                <button v-on:click="deleteRecipe(recipe._id)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="code.js"></script>
+</html>
