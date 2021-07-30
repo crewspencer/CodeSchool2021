@@ -1,0 +1,37 @@
+#hero-img {
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url("images/mixer.jpg");
+    height: 450px;
+    max-width: 1200px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    padding-top:90px;
+    padding-left:75px;
+    letter-spacing: 2px;
+    margin: 0 auto;
+}
+#hero-text {
+    font-size:17px;
+    padding-top:5px;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+#button {
+    background-color: cadetblue;
+    border: none;
+    color: white;
+    padding-left:20px;
+    padding-right: 20px;
+    padding-top:7px;
+    padding-bottom:7px;
+    text-transform: uppercase;
+    margin-top:10px;
+
+}
+#button {
+    transition-duration: 0.4s;
+  }
+  
+  #button:hover {
+    background-color:#4CAF50;
+    color: white;
+  }

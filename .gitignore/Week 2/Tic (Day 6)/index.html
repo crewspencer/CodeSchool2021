@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="icofont.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="tic-tac">
+        <h1>Tic-Tac-Toe</h1>
+    </div>
+
+    <h2>Player <span id="turn">X</span>: it's your turn!</h2>
+
+    <div id="refresh">
+        <a href="">
+        <i class="icofont-refresh"></i>
+        </a>
+    </div>
+
+
+    <div id="firstrow">
+        <div class="tile row1 col1 diag1"></div>
+        <div class="tile row1 col2"></div>
+        <div class="tile row1 col3 diag2"></div>
+    </div>
+<div id="secondrow">
+
+        <div class="tile row2 col1"></div>
+        <div class="tile row2 col2 diag1 diag2"></div>
+        <div class="tile row2 col3"></div>
+    </div>
+<div id="thirdrow">
+
+        <div class="tile row3 col1 diag2"></div>
+        <div class="tile row3 col2"></div>
+        <div class="tile row3 col3 diag1"></div>
+     </div>
+ 
+    <script src="sheet.js"></script>
+    <script>
+            function fun () {
+                document.getElementById("#refresh").reset();
+            }
+         </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+#firstrow{
+    display: flex;
+    flex-direction: row;
+    background-color: #EDDDD4;
+    margin-top:30px;
+    user-select: none;
+}
+#secondrow{
+    display: flex;
+    flex-direction: row;
+    background-color: #EDDDD4;
+    user-select: none;
+}
+#thirdrow{
+    display: flex;
+    flex-direction: row;
+    background-color: #EDDDD4;
+    user-select: none;
+}
+
+.tile{
+    font-family:'Baloo Tammudu 2', cursive;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 0 1px #333333;
+    border: 1px solid #333333;
+    cursor: pointer;
+    line-height: 100px;
+    font-size: 60px;
+    text-align: center;
+
+}
+.tic-tac {
+    font-family: 'Baloo Tammudu 2', cursive;
+    color: #772E25;
+}
+
+#turn {
+    font-family:  'Baloo Tammudu 2'
+
+}
+
+
+body{
+    background-color:#197278;
+    text-align: center;
+    display:grid;
+    justify-content: center;
+}
+
+.icofont-refresh{
+    font-size: 5em;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
